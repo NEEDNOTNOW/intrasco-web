@@ -1,10 +1,13 @@
 import Navbar from "./Navbar";
 
-export default function HomeScreen() {
-  return (
-    <main className="min-h-screen bg-slate-50 text-slate-900">
-      <Navbar />
+interface HomeProps {
+  onNavigate: (page: string) => void;
+  currentPage?: string;
+}
 
+export default function Home({ onNavigate, currentPage = "AdminPanel" }: HomeProps) {
+  return (
+    <div className="min-h-screen bg-slate-50 text-slate-900">
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(79,70,229,0.16),_transparent_28%)]" />
         <div className="relative mx-auto flex min-h-[85vh] max-w-7xl flex-col justify-center px-8 py-24 lg:flex-row lg:items-center lg:gap-16">
@@ -152,36 +155,6 @@ export default function HomeScreen() {
         </div>
       </section>
 
-      <section id="contact" className="bg-slate-900 py-24 text-white">
-        <div className="mx-auto max-w-7xl px-8">
-          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-400">Let's build your solution</p>
-              <h2 className="mt-4 text-4xl font-black sm:text-5xl">Book a demo or ask about enterprise pricing.</h2>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-                Itransco is built for cooperatives that need reliable transport management and smart reporting tools.
-              </p>
-            </div>
-
-            <div className="rounded-[32px] bg-slate-800 p-10 shadow-2xl shadow-slate-900/50">
-              <div className="space-y-6">
-                <div>
-                  <p className="text-sm uppercase tracking-[0.3em] text-indigo-400">Contact</p>
-                  <p className="mt-3 text-lg font-semibold text-white">hello@itransco.com</p>
-                </div>
-                <div>
-                  <p className="text-sm uppercase tracking-[0.3em] text-indigo-400">Phone</p>
-                  <p className="mt-3 text-lg font-semibold text-white">+63 912 345 6789</p>
-                </div>
-                <div>
-                  <p className="text-sm uppercase tracking-[0.3em] text-indigo-400">Address</p>
-                  <p className="mt-3 text-lg font-semibold text-white">Makati City, Philippines</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
+    </div>
   );
 }

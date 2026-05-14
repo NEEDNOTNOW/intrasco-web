@@ -2,7 +2,12 @@
 
 import React, { useState } from "react";
 
-export default function Navbar() {
+interface NavbarProps {
+  onNavigate: (page: string) => void;
+  currentPage: string;
+}
+
+export default function Navbar({ onNavigate, currentPage }: NavbarProps) {
   const [position, setPosition] = useState({ x: 50, y: 50 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -12,6 +17,14 @@ export default function Navbar() {
       y: ((e.clientY - top) / height) * 100,
     });
   };
+
+  const navLinks = [
+    { label: "Home", page: "AdminPanel" },
+    { label: "Route", page: "Map" },
+    { label: "Services", page: "Services" },
+    { label: "Complaints", page: "Complaints" },
+    { label: "About Us", page: "AboutUs" },
+  ];
 
   return (
     <nav
@@ -31,22 +44,24 @@ export default function Navbar() {
         </div>
 
         <div className="flex flex-wrap items-center gap-6 text-sm font-semibold">
-          <a href="#features" className="relative group transition hover:text-white">
-            Features
-            <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"></span>
-          </a>
-          <a href="#about" className="relative group transition hover:text-white">
-            About
-            <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"></span>
-          </a>
-          <a href="#services" className="relative group transition hover:text-white">
-            Services
-            <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"></span>
-          </a>
-          <a href="#contact" className="relative group transition hover:text-white">
-            Contact
-            <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"></span>
-          </a>
+          {navLinks.map(({ label, page }) => {
+            const isActive = currentPage === page;
+            return (
+              <button
+                key={page}
+                onClick={() => onNavigate(page)}
+                className="relative group transition hover:text-white bg-transparent border-none cursor-pointer text-white text-sm font-semibold"
+              >
+                {label}
+                <span
+                  className="absolute left-0 -bottom-1 h-[2px] bg-white transition-all duration-300"
+                  style={{ width: isActive ? "100%" : "0%" }}
+                />
+                {/* hover underline handled via group */}
+                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full" />
+              </button>
+            );
+          })}
         </div>
 
         <a

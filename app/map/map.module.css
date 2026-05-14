@@ -1,0 +1,437 @@
+/* ── Layout ──────────────────────────────────────────────────────────────── */
+
+.layout {
+  display: flex;
+  /* Fill whatever height the parent <main> gives us */
+  height: calc(100vh - 72px); /* 72px = your navbar height, adjust if needed */
+  width: 100%;
+  overflow: hidden;
+  font-family: "DM Sans", "Inter", system-ui, sans-serif;
+  background: #0f172a;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────────────────── */
+
+.sidebar {
+  width: 320px;
+  min-width: 280px;
+  height: 100%;
+  background: #0f172a;
+  border-right: 1px solid #1e293b;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  z-index: 10;
+  scrollbar-width: thin;
+  scrollbar-color: #334155 transparent;
+}
+
+.sidebarHeader {
+  padding: 24px 20px 16px;
+  border-bottom: 1px solid #1e293b;
+}
+
+.appTitle {
+  font-size: 22px;
+  font-weight: 800;
+  color: #f8fafc;
+  letter-spacing: -0.03em;
+  margin: 0 0 2px;
+}
+
+.appSubtitle {
+  font-size: 12px;
+  color: #64748b;
+  margin: 0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ── Sections ────────────────────────────────────────────────────────────── */
+
+.section {
+  padding: 16px 20px;
+  border-bottom: 1px solid #1e293b;
+}
+
+.sectionLabel {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #475569;
+  margin-bottom: 10px;
+}
+
+/* ── Search ──────────────────────────────────────────────────────────────── */
+
+.searchBox {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  padding: 9px 36px 9px 12px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: #f1f5f9;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+
+.input::placeholder {
+  color: #475569;
+}
+
+.input:focus {
+  border-color: #6366f1;
+}
+
+.searchSpinner {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  border: 2px solid #334155;
+  border-top-color: #6366f1;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* ── Results list ────────────────────────────────────────────────────────── */
+
+.resultsList {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  overflow: hidden;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.resultItem {
+  border-bottom: 1px solid #273548;
+  display: flex;
+  align-items: stretch;
+}
+
+.resultItem:last-child {
+  border-bottom: none;
+}
+
+.resultMain {
+  flex: 1;
+  text-align: left;
+  padding: 10px 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #f1f5f9;
+  transition: background 0.1s;
+  min-width: 0;
+}
+
+.resultMain:hover {
+  background: #273548;
+}
+
+.resultName {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #e2e8f0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.resultSub {
+  display: block;
+  font-size: 11px;
+  color: #64748b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+}
+
+.resultActions {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #273548;
+}
+
+.tagBtn {
+  flex: 1;
+  padding: 0 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  color: #6366f1;
+  letter-spacing: 0.03em;
+  transition: background 0.1s;
+}
+
+.tagBtn:hover {
+  background: #1e2d44;
+}
+
+.tagBtn:first-child {
+  border-bottom: 1px solid #273548;
+}
+
+/* ── Waypoints ───────────────────────────────────────────────────────────── */
+
+.waypointRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.waypointDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.waypointInput {
+  flex: 1;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 7px;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.waypointLabel {
+  font-size: 13px;
+  color: #e2e8f0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.waypointPlaceholder {
+  font-size: 12px;
+  color: #475569;
+}
+
+.clearBtn {
+  background: none;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0 2px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.clearBtn:hover {
+  color: #f1f5f9;
+}
+
+.directionsBtn {
+  width: 100%;
+  margin-top: 4px;
+  padding: 10px;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+  letter-spacing: 0.02em;
+}
+
+.directionsBtn:hover:not(:disabled) {
+  background: #4f46e5;
+}
+
+.directionsBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.errorText {
+  font-size: 12px;
+  color: #f87171;
+  margin: 8px 0 0;
+}
+
+/* ── Route info card ─────────────────────────────────────────────────────── */
+
+.routeInfo {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-top: 12px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 12px 14px;
+}
+
+.routeInfoItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.routeInfoValue {
+  font-size: 22px;
+  font-weight: 800;
+  color: #f8fafc;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.routeInfoUnit {
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.routeInfoDivider {
+  width: 1px;
+  height: 32px;
+  background: #334155;
+  margin: 0 4px;
+}
+
+.clearRouteBtn {
+  margin-left: auto;
+  background: none;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  color: #64748b;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.clearRouteBtn:hover {
+  border-color: #f87171;
+  color: #f87171;
+}
+
+/* ── Route toggles ───────────────────────────────────────────────────────── */
+
+.routeToggles {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.routeToggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 7px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+}
+
+.routeToggle:hover {
+  background: #273548;
+}
+
+.routeToggleActive {
+  background: #1e293b;
+  font-weight: 600;
+}
+
+.routeToggleDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+
+.sidebarFooter {
+  margin-top: auto;
+  padding: 12px 20px;
+  border-top: 1px solid #1e293b;
+}
+
+.sidebarFooter p {
+  font-size: 11px;
+  color: #334155;
+  margin: 2px 0;
+}
+
+.sidebarFooter a {
+  color: #475569;
+  text-decoration: none;
+}
+
+.sidebarFooter a:hover {
+  color: #94a3b8;
+}
+
+/* ── Map area ────────────────────────────────────────────────────────────── */
+
+.mapArea {
+  flex: 1;
+  height: 100%;
+  position: relative;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .layout {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    max-height: 45vh;
+    border-right: none;
+    border-bottom: 1px solid #1e293b;
+  }
+
+  .mapArea {
+    flex: 1;
+    height: 55vh;
+  }
+}
